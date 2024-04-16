@@ -1,6 +1,9 @@
 <script setup>
-import { handleError, ref } from "vue";
+import { ref } from "vue";
 import { store, calcultate } from "../store/store";
+
+
+
 const total = ref(0);
 const tip = ref(0);
 const people = ref(0);
@@ -8,7 +11,7 @@ function handleSubmit() {
   store.params.total = total;
   store.params.tip = tip;
   store.params.people = people;
-  calcultate()
+  calcultate();
 }
 </script>
 <template>
@@ -33,7 +36,6 @@ function handleSubmit() {
   </form>
 </template>
 <style scoped>
-
 form {
   width: 400px;
   background-color: rgb(23, 129, 78);
