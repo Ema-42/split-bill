@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps, ref } from "vue";
-import {  store,pay } from "../store/store";
+import { store, pay } from "../store/store";
 
 const props = defineProps(["id", "numberOfPerson", "totalPerPerson", "paid"]);
 
@@ -12,34 +12,32 @@ function handleChange(e) {
 }
 </script>
 <template>
-  <div :class="['person', props.paid ? 'person-paid':'person-no-paid']">
+  <div :class="['person', props.paid ? 'person-paid' : 'person-no-paid']">
     <div>
-      <div class="person-number">Person {{ props.numberOfPerson }}
-        {{ props.paid }}
+      <div class="person-number">
+        Person {{ props.numberOfPerson }}
+        <span v-if="props.paid===false">Not Paid</span>
+        <span v-else>Pay ✅ </span>
       </div>
       <div class="person-to-pay">
-        {{       new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(props.totalPerPerson) }}
+        {{
+          new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+          }).format(props.totalPerPerson)
+        }}
       </div>
-      <div class="paid">
-        <input type="checkbox" @change="handleChange" /> Paid
+      <div class="paid flex justify-content-center">
+        <InputSwitch v-model="paid" @change="handleChange" />
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-
 .person {
-  height: 200px;
   border-radius: 5px;
   font-size: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
 }
 
 .person-paid {
@@ -49,23 +47,21 @@ function handleChange(e) {
 .person-no-paid {
   border: solid 4px #ccc;
 }
-
+.person-to-pay {
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  color: greenyellow;
+}
 .person-number {
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   padding: 10px;
   color: white;
   text-align: center;
-}
-.person-to-pay {
-  text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-  color: greenyellow;
 }
 
 .paid {
   background-color: rgb(52, 63, 104);
   padding: 10px;
 }
-
 </style>

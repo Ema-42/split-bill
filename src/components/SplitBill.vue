@@ -14,7 +14,6 @@ import PeopleView from './PeopleView.vue';
 </template>
 
 <style scoped>
-.container{
-    display: flex;
-}
+
+
 </style>

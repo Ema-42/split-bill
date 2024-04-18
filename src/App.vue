@@ -1,7 +1,6 @@
 <script setup>
+import HelloWorld from './components/HelloWorld.vue';
 import SplitBill from './components/SplitBill.vue';
-
-
 </script>
 
 <template>
@@ -9,4 +8,5 @@ import SplitBill from './components/SplitBill.vue';
 </template>
 
 <style scoped>
+
 </style>

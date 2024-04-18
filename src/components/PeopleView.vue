@@ -4,62 +4,58 @@ import Label from "./Label.vue";
 import Person from "./Person.vue";
 </script>
 <template>
-  <div class="no-items" v-if="store.people.length === 0">No items</div>
-  <div class="people-view" v-if="store.people.length > 0">
-    <div class="header">
-      <div>
-        <Label title="Total + Tip : " :value="getGrandTotal()"></Label>
+  <div >
+    <div class="no-items" v-if="store.people.length === 0">No items</div>
+    <div class="people-view" v-if="store.people.length > 0">
+      <div class="header">
+        <div>
+          <Label title="Total + Tip : " :value="getGrandTotal()"></Label>
+        </div>
+        <div>
+          <Label title="Ramining : " :value="store.params.remaining"></Label>
+        </div>
       </div>
-      <div>
-        <Label title="Ramining : " :value="store.params.remaining"></Label>
+      <div class="people-container">
+        <Person
+          v-for="person in store.people"
+          :key="person.id"
+          :id="person.id"
+          :number-of-person="person.numberOfPerson"
+          :total-Per-Person="person.totalPerPerson"
+          :paid="person.paid"
+        />
       </div>
-    </div>
-    <div class="people-container">
-      <Person
-        v-for="person in store.people"
-        :key="person.id"
-        :id ="person.id"
-        :number-of-person="person.numberOfPerson"
-        :total-Per-Person="person.totalPerPerson"
-        :paid="person.paid"
-      />
     </div>
   </div>
 </template>
 <style scoped>
-
 .no-items {
-  width: 100%;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  font-size: 25px;
 }
 .people-view {
-  margin: 0 auto;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
-.people-container {
-  width: 800px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
-  gap: 10px;
-}
-
 .header {
-  color: white;
+  color: var(--surface-0);
   font-weight: bolder;
-  padding: 20px 0;
-  font-size: 28px;
+  font-size: 25px;
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
+  gap: 15px;
   flex-direction: column;
+  margin-bottom: 2rem;
+}
+.people-container {
+  margin: 0rem 1rem 0rem 1rem;
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 1rem;
 }
 
 </style>

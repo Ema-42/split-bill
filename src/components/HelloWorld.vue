@@ -1,40 +1,32 @@
-<script setup>
-import { ref } from 'vue'
-
-defineProps({
-  msg: String,
-})
-
-const count = ref(0)
-</script>
-
 <template>
-  <h1>{{ msg }}</h1>
+  <div class="card flex flex-wrap gap-3 p-fluid">
+      <div class="flex-auto">
+          <label for="stacked-buttons" class="font-bold block mb-2"> Stacked </label>
+          <InputNumber v-model="value1" inputId="stacked-buttons" showButtons mode="currency" currency="USD" />
+      </div>
 
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
+      <div class="flex-auto">
+          <label for="minmax-buttons" class="font-bold block mb-2"> Min-Max Boundaries </label>
+          <InputNumber v-model="value2" inputId="minmax-buttons" mode="decimal" showButtons :min="0" :max="100" />
+      </div>
+      <div class="flex-auto">
+          <label for="horizontal-buttons" class="font-bold block mb-2"> Horizontal with Step </label>
+          <InputNumber v-model="value3" inputId="horizontal-buttons" showButtons buttonLayout="horizontal" :step="0.25" mode="currency" currency="EUR">
+              <template #incrementbuttonicon>
+                  <span class="pi pi-plus" />
+              </template>
+              <template #decrementbuttonicon>
+                  <span class="pi pi-minus" />
+              </template>
+          </InputNumber>
+      </div>
   </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Install
-    <a href="https://github.com/vuejs/language-tools" target="_blank">Volar</a>
-    in your IDE for a better DX
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-</style>
+<script setup>
+import { ref } from "vue";
+
+const value1 = ref(20);
+const value2 = ref(25);
+const value3 = ref(10.5);
+</script>
